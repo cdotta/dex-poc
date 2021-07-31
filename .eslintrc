@@ -1,3 +1,9 @@
 {
-  "extends": ["next", "next/core-web-vitals"]
+  "extends": ["next", "next/core-web-vitals", "airbnb", "prettier"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "react/jsx-filename-extension": "off",
+    "import/prefer-default-export": "off"
+  }
 }
