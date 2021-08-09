@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
-import { Select } from '@chakra-ui/react';
+import React, { useContext, useState } from 'react';
 import { useAccounts, useTokens, Web3Context } from '../lib/web3-utils';
+import TokenSelect from '../components/TokenSelect';
 
 export default function Home() {
+  const [selectedToken, setSelectedToken] = useState();
   const { loading: web3Loading } = useContext(Web3Context);
   const { accounts } = useAccounts();
   const { tokens } = useTokens();
@@ -13,13 +14,11 @@ export default function Home() {
     <div>
       {!isReady() && <div>loading</div>}
       <div>Header</div>
-      <Select placeholder="Select token">
-        {tokens.map((token) => (
-          <option key={token.tokenAddress} value={token.tokenAddress}>
-            {token.ticker}
-          </option>
-        ))}
-      </Select>
+      <TokenSelect
+        tokens={tokens}
+        selectedToken={selectedToken}
+        onTokenSelect={(token) => setSelectedToken(token)}
+      />
       <div>Footer</div>
     </div>
   );
