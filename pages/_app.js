@@ -1,17 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { ChakraProvider } from '@chakra-ui/react';
 import React from 'react';
-import { useWeb3, Web3Context } from '../lib/web3-utils';
+import { useAppContextValue, AppContext } from '../lib/web3-hooks';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
-  const web3ContextValue = useWeb3();
+  const appContextValue = useAppContextValue();
 
   return (
     <ChakraProvider>
-      <Web3Context.Provider value={web3ContextValue}>
+      <AppContext.Provider value={appContextValue}>
         <Component {...pageProps} />
-      </Web3Context.Provider>
+      </AppContext.Provider>
     </ChakraProvider>
   );
 }
